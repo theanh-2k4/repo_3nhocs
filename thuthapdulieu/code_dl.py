@@ -38,7 +38,20 @@ def load_all_products():
         except:
             break
 
+def get_product_links():
+    product_links = []
+    try:
+        products = driver.find_elements(By.CSS_SELECTOR, "a:has(h3.line-clamp-2.h-10.text-sm.font-semibold)")
+        for product in products:
+            product_link = product.get_attribute("href")
+            product_links.append(product_link)
+            print(product_link)
+    except Exception as e:
+        print(f"Error: {e}")
+    return product_links
+
 load_all_products()
+links = get_product_links()
 
 # Tao cac list
 stt = []
